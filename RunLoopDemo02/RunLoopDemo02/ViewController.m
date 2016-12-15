@@ -37,6 +37,7 @@
     
     //创建子线程，启动runloop
     [self createThread];
+    
 }
 
 - (void)createThread
