@@ -49,22 +49,24 @@
 
 - (void)timerTest
 {
-    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-    NSLog(@"启动RunLoop前--%@",runLoop.currentMode);
-    NSLog(@"currentRunLoop:%@",[NSRunLoop currentRunLoop]);
-    
-    // 第一种写法,改正前
-//    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-//    [timer fire];
-    // 第一种写法,改正后
-//    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-//    [timer fire];
-    // 第二种写法
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
-    
-    [[NSRunLoop currentRunLoop] run];
+    @autoreleasepool {
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        NSLog(@"启动RunLoop前--%@",runLoop.currentMode);
+        NSLog(@"currentRunLoop:%@",[NSRunLoop currentRunLoop]);
+        
+        // 第一种写法,改正前
+        //    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
+        //    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+        //    [timer fire];
+        // 第一种写法,改正后
+        //    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
+        //    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        //    [timer fire];
+        // 第二种写法
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
+        
+        [[NSRunLoop currentRunLoop] run];
+    }
 }
 
 - (void)timerUpdate

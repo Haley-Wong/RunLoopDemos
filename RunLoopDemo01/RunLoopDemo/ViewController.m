@@ -45,18 +45,20 @@
 
 - (void)subThreadEntryPoint
 {
-    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-    //如果注释了下面这一行，子线程中的任务并不能正常执行
-    [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
-    NSLog(@"启动RunLoop前--%@",runLoop.currentMode);
-    NSLog(@"currentRunLoop:%@",[NSRunLoop currentRunLoop]);
-    
-    // 打印当前RunLoop中的Modes
-//    CFRunLoopRef runLoopRef = CFRunLoopGetCurrent();
-//    CFArrayRef modes = CFRunLoopCopyAllModes(runLoopRef);
-//    NSLog(@"打印当前RunLoop中的Modes:%@",modes);
-    
-    [runLoop run];
+    @autoreleasepool {
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        //如果注释了下面这一行，子线程中的任务并不能正常执行
+        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        NSLog(@"启动RunLoop前--%@",runLoop.currentMode);
+        NSLog(@"currentRunLoop:%@",[NSRunLoop currentRunLoop]);
+        
+        // 打印当前RunLoop中的Modes
+        //    CFRunLoopRef runLoopRef = CFRunLoopGetCurrent();
+        //    CFArrayRef modes = CFRunLoopCopyAllModes(runLoopRef);
+        //    NSLog(@"打印当前RunLoop中的Modes:%@",modes);
+        
+        [runLoop run];
+    }
 }
 
 /**

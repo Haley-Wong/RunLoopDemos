@@ -51,10 +51,12 @@ static FluencyMonitor *instance = nil;
 
 + (void)monitorThreadEntryPoint
 {
-    [[NSThread currentThread] setName:@"FluencyMonitor"];
-    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-    [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
-    [runLoop run];
+    @autoreleasepool {
+        [[NSThread currentThread] setName:@"FluencyMonitor"];
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+        [runLoop run];
+    }
 }
 
 /**
